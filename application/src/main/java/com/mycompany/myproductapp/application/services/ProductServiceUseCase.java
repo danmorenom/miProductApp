@@ -2,11 +2,13 @@ package com.mycompany.myproductapp.application.services;
 
 import com.mycompany.myproductapp.application.domain.model.Product;
 
-import lombok.RequiredArgsConstructor;
 import java.util.Set;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ProductServiceUseCase implements com.mycompany.myproductapp.application.ports.driving.ProductPort {
@@ -15,8 +17,8 @@ public class ProductServiceUseCase implements com.mycompany.myproductapp.applica
 
     @Override
     public Set<Product> getSimilarProducts(String productId) {
-        var similarProducts = productPort.getSimilarProducts(productId);
-        // TODO - Validar que el API devuelve todos los campos obligatorios, y que los 2 Strings tienen longitud >= 1
-        return similarProducts;
+        log.debug("Calling getSimilarProducts use case method for product id {}", productId);
+        return productPort.getSimilarProducts(productId);
     }
+
 }

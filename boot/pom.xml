@@ -17,6 +17,10 @@
     <name>myProductApp-boot</name>
     <packaging>jar</packaging>
 
+    <properties>
+        <pit.skip>true</pit.skip>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.mycompany</groupId>
@@ -56,6 +60,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>${pitest-maven.version}</version>
+
+                <configuration>
+                    <failWhenNoMutations>false</failWhenNoMutations>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -22,6 +22,9 @@
 		<mapstruct.version>1.6.3</mapstruct.version>
 		<lombok.version>1.18.42</lombok.version>
 		<instancio.version>5.5.1</instancio.version>
+		<!-- PITest Properties -->
+		<pitest-maven.version>1.30.0</pitest-maven.version>
+		<pitest-junit5-plugin.version>1.2.3</pitest-junit5-plugin.version>
 	</properties>
 
 	<dependencyManagement>
@@ -64,6 +67,50 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<profiles>
+		<profile>
+			<id>mutation-testing</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.pitest</groupId>
+						<artifactId>pitest-maven</artifactId>
+						<version>${pitest-maven.version}</version>
+						<configuration>
+							<outputFormats>
+								<param>XML</param>
+								<param>HTML</param>
+							</outputFormats>
+							<exportLineCoverage>true</exportLineCoverage>
+							<excludedClasses>
+								<param>com.mycompany.myproductapp.api.client.generated.*</param>
+								<param>com.mycompany.myproductapp.api.rest.generated.*</param>
+								<param>*MapperImpl</param>
+							</excludedClasses>
+						</configuration>
+						<executions>
+							<execution>
+								<id>pit-mutation-testing</id>
+								<phase>test</phase>
+								<goals>
+									<goal>mutationCoverage</goal>
+								</goals>
+							</execution>
+						</executions>
+						<!-- Need this to support JUnit 5 -->
+						<dependencies>
+							<dependency>
+								<groupId>org.pitest</groupId>
+								<artifactId>pitest-junit5-plugin</artifactId>
+								<version>${pitest-junit5-plugin.version}</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 	<build>
 		<pluginManagement>
 			<plugins>
@@ -98,11 +145,11 @@
 	</build>
 
   <modules>
-    <!-- Core application-->
+    <!-- Core application -->
     <module>application</module>
     <!-- Runtime -->
     <module>boot</module>
-    <!-- Adapter implementations-->
+    <!-- Adapter implementations -->
     <module>driven/api-client</module>
     <module>driving/api-rest</module>
   </modules>

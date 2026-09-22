@@ -20,4 +20,5 @@ public class ProductApiClientConfig {
     public DefaultApi defaultApi(ApiClient apiClient) {
         return new DefaultApi(apiClient);
     }
+
 }

@@ -6,5 +6,7 @@ import java.util.Set;
 
 
 public interface ProductPort {
+
     Set<Product> getSimilarProducts(String productId);
+
 }

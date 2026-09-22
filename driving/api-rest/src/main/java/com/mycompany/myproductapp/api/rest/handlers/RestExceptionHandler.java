@@ -21,4 +21,5 @@ public class RestExceptionHandler {
     public ResponseEntity<String> handleProductServiceException(ProductServiceException ex) {
         return ResponseEntity.internalServerError().body(ex.getMessage());
     }
+
 }

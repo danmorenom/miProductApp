@@ -7,3 +7,7 @@ server:
 
 external-api:
   base-url: http://localhost:3001
+
+logging:
+  level:
+    com.mycompany.myproductapp: INFO

@@ -5,14 +5,15 @@ import com.mycompany.myproductapp.api.rest.generated.model.ProductDetail;
 import com.mycompany.myproductapp.api.rest.mappers.ProductRestMapper;
 import com.mycompany.myproductapp.application.ports.driving.ProductPort;
 
+import java.util.Set;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.jspecify.annotations.NonNull;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Set;
 
-
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class ProductRestControllerAdapter implements DefaultApi {
@@ -22,7 +23,9 @@ public class ProductRestControllerAdapter implements DefaultApi {
 
     @Override
     public ResponseEntity<Set<ProductDetail>> getProductSimilar(@NonNull String productId) {
+        log.info("############### Calling getProductSimilar REST API endpoint for product id {}", productId);
         var similarIds = productPort.getSimilarProducts(productId);
         return ResponseEntity.ok( productRestMapper.mapFromDomain(similarIds));
     }
+
 }
