@@ -13,8 +13,9 @@ mvn clean package
 java -jar boot/target/myProductApp-boot-1.0.0.jar
 ```
 
-**NOTE:** Maven must be pre-installed on the machine and configured in the PATH so that it can be executed from any folder.
-**NOTE:** Java 21 must be pre-installed on the machine and configured in the PATH as the default Java version so that it can be executed from any folder.
+**NOTES:**
+Maven must be pre-installed on the machine and configured in the PATH so that it can be executed from any folder.
+Java 21 must be pre-installed on the machine and configured in the PATH as the default Java version so that it can be executed from any folder.
 
 
 ## Instructions for running the tests
